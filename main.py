@@ -13,7 +13,7 @@ class combination:
 
 '''
 this method is going to take a list of "combinations" and sort their final scores
-the scores that meet the users goal (or get the closest compared to the rest) will
-currently researching if this can be done with built in sort method
+the scores that meet the users goal (or get the closest compared to the rest) should appear at top of list
+sorting by list
 '''
 def sortMyCombos():
