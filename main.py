@@ -3,27 +3,31 @@ from itertools import combinations
 #saving all possible combinations is silly.  this class just saves the final score and the numbers of a combination 
 #if the main method finds that it meets the users lot number ... or best case scenario
 class combination:
-    #attributes
+    #attributes of combination
     finalScore = 0
     theNumbers = []
-
-#methods
-def __init__(self, finalScore, theNumbers):
-    self.finalScore = finalScore
-    self.theNumbers = theNumbers
+    #methods of combination
+    def __init__(self, finalScore, theNumbers):
+        self.finalScore = finalScore
+        self.theNumbers = theNumbers
 
 #totally stole this. you put a list of numbers in and it returns a list of all combinations
 def generate_combinations(numbers):
     all_combinations = []
-    
     for r in range(1, len(numbers) + 1):
         # Generate combinations of length r
         combinations_r = combinations(numbers, r)
-        all_combinations.extend(list(combinations_r))
-    
+        all_combinations.extend(list(combinations_r))   
     return all_combinations
-
-
+#turns the list of combinations into a list of classes of combinations
+#this just adds a sum to make it user frienly...ish
+def turnIntoInstancesOfCombinations(list):
+    combinationList = []
+    for each in list:
+        combinationList.append(combination(sum(each), each))  
+    for each in combinationList:
+        print(each.finalScore)
+        print(each.theNumbers)
 
 '''
 this method is going to take a list of "combinations" and sort their final scores
@@ -56,5 +60,5 @@ while gatheringLots == True:
 #print out the list to make sure it works properly
 print(numbers)
 print("You goal is " + goal + ".")
-#allCombos = generate_combinations(numbers)
 print(generate_combinations(numbers))
+turnIntoInstancesOfCombinations(generate_combinations(numbers))
