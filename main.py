@@ -1,3 +1,4 @@
+from itertools import combinations
 #creating a class to define and store number combinations
 #saving all possible combinations is silly.  this class just saves the final score and the numbers of a combination 
 #if the main method finds that it meets the users lot number ... or best case scenario
@@ -6,10 +7,23 @@ class combination:
     finalScore = 0
     theNumbers = []
 
-    #methods
-    def __init__(self, finalScore, theNumbers):
-        self.finalScore = finalScore
-        self.theNumbers = theNumbers
+#methods
+def __init__(self, finalScore, theNumbers):
+    self.finalScore = finalScore
+    self.theNumbers = theNumbers
+
+#totally stole this. you put a list of numbers in and it returns a list of all combinations
+def generate_combinations(numbers):
+    all_combinations = []
+    
+    for r in range(1, len(numbers) + 1):
+        # Generate combinations of length r
+        combinations_r = combinations(numbers, r)
+        all_combinations.extend(list(combinations_r))
+    
+    return all_combinations
+
+
 
 '''
 this method is going to take a list of "combinations" and sort their final scores
@@ -26,7 +40,7 @@ goal = input("enter the amount you need in the work orders: ")
 #a list to store the numbers of the different lots
 numbers = []
 #asking to user to enter in all the different lot amounts
-print("type in each amount of your lots followed by 'enter'. \nenter 0 when you're done" )
+print("type in each amount of your lots followed by 'enter'. \nenter 0 again when you're done" )
 #this boolean statement will be turned false when the user enters a 0, ending the while loop
 gatheringLots = True
 #because there are any given number of different lots, a while statement seemed appropriate
@@ -42,3 +56,5 @@ while gatheringLots == True:
 #print out the list to make sure it works properly
 print(numbers)
 print("You goal is " + goal + ".")
+#allCombos = generate_combinations(numbers)
+print(generate_combinations(numbers))
