@@ -26,9 +26,7 @@ def turnIntoInstancesOfCombinations(list):
     for each in list:
         #take the sum of the list and assign it to the final score and then list the numbers. "each" is a list 
         combinationList.append(Combination(sum(each), each))  
-    #for each in combinationList:
-    #    print(each.finalScore)
-    #    print(each.theNumbers)
+   
     return combinationList
 
 '''
@@ -36,11 +34,9 @@ this method is going to take a list of "combinations" and sort their final score
 the scores that meet the users goal (or get the closest compared to the rest) should appear at top of list
 sorting by list
 '''
-def sortMyCombos(theCombinations):
+def sortMyCombos(theCombinations,usersGoal):
     sorted(theCombinations, key=lambda combination: combination.finalScore)
-    for each in theCombinations:
-        print(each.finalScore)
-        print(each.theNumbers)
+
     return theCombinations
 
 #the main thing
@@ -64,7 +60,9 @@ while gatheringLots == True:
         numbers.append(int(nextNumber))
 
 #print out the list to make sure it works properly
-print(numbers)
-print("You goal is " + goal + ".")
-print(generate_combinations(numbers))
-sortMyCombos(turnIntoInstancesOfCombinations(generate_combinations(numbers)))
+theFinalList = sortMyCombos(turnIntoInstancesOfCombinations(generate_combinations(numbers)), int(goal))
+print("SORTED LIST OF VALID COMBINATIONS")
+for each in theFinalList:
+    if int(each.finalScore) <= int(goal):
+        print(each.finalScore)
+        print(each.theNumbers)
