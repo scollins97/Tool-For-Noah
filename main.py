@@ -66,3 +66,5 @@ for each in theFinalList:
     if int(each.finalScore) <= int(goal):
         print(each.finalScore)
         print(each.theNumbers)
+
+exit = input("")
