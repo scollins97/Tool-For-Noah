@@ -2,7 +2,7 @@ from itertools import combinations
 #creating a class to define and store number combinations
 #saving all possible combinations is silly.  this class just saves the final score and the numbers of a combination 
 #if the main method finds that it meets the users lot number ... or best case scenario
-class combination:
+class Combination:
     #attributes of combination
     finalScore = 0
     theNumbers = []
@@ -24,18 +24,24 @@ def generate_combinations(numbers):
 def turnIntoInstancesOfCombinations(list):
     combinationList = []
     for each in list:
-        combinationList.append(combination(sum(each), each))  
-    for each in combinationList:
-        print(each.finalScore)
-        print(each.theNumbers)
+        #take the sum of the list and assign it to the final score and then list the numbers. "each" is a list 
+        combinationList.append(Combination(sum(each), each))  
+    #for each in combinationList:
+    #    print(each.finalScore)
+    #    print(each.theNumbers)
+    return combinationList
 
 '''
 this method is going to take a list of "combinations" and sort their final scores
 the scores that meet the users goal (or get the closest compared to the rest) should appear at top of list
 sorting by list
 '''
-#def sortMyCombos(theCombinations):
-    #some future code
+def sortMyCombos(theCombinations):
+    sorted(theCombinations, key=lambda combination: combination.finalScore)
+    for each in theCombinations:
+        print(each.finalScore)
+        print(each.theNumbers)
+    return theCombinations
 
 #the main thing
     
@@ -61,4 +67,4 @@ while gatheringLots == True:
 print(numbers)
 print("You goal is " + goal + ".")
 print(generate_combinations(numbers))
-turnIntoInstancesOfCombinations(generate_combinations(numbers))
+sortMyCombos(turnIntoInstancesOfCombinations(generate_combinations(numbers)))
